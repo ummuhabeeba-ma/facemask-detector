@@ -6,7 +6,7 @@ Wearing face masks is essential to prevent the spread of airborne diseases. Ensu
 We have utilized the YOLOv8 (You Only Look Once version 8) algorithm for its speed and accuracy in real-time object detection tasks. The YOLOv8 model is known for its ability to perform object detection tasks quickly and accurately, making it suitable for real-time applications.
 
 # Data Collection
-The dataset was collected from various mask datasets available on Kaggle. The dataset includes over 1140 images categorized into two classes:
+The dataset was collected from various mask datasets available on Kaggle. The training set includes over 1140 images categorized into two classes:
 
 * With Mask
 * Without Mask
