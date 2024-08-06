@@ -65,5 +65,4 @@ elif option == "Webcam Detection":
             stframe.image(res_plot, caption="Webcam Feed", use_column_width=True)
 
         vid.release()
-        cv2.destroyAllWindows()
         st.write("Webcam stopped.")
