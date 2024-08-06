@@ -12,8 +12,7 @@ The dataset was collected from various mask datasets available on Kaggle. The da
 * Without Mask
 
 # Results
-With a training accuracy of 93.2%, this system can be effectively deployed in public spaces to ensure adherence to health guidelines, thereby contributing to public safety and health.
-
+The model achieved a training accuracy of 93.2%, indicating its strong capability in classifying mask usage. This performance suggests that the model is well-trained and reliable for real-time applications.
 
 
 
