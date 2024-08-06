@@ -1,6 +1,0 @@
-streamlit
-torch
-cv2
-numpy
-ultralytics
-PIL
