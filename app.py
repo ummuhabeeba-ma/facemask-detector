@@ -5,7 +5,6 @@ import numpy as np
 from ultralytics import YOLO
 from PIL import Image
 
-
 model = YOLO("best.pt")
 
 st.set_page_config(page_title="Mask Detector", page_icon="😷")
@@ -13,6 +12,7 @@ st.title("🦠 Real-Time Face Mask Detection")
 st.write("Welcome to the Mask Detection Application. Choose an option to detect masks:")
 
 option = st.selectbox("Select an option:", ("Webcam Detection", "Upload Image"))
+
 
 if option == "Upload Image":
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
@@ -30,6 +30,7 @@ if option == "Upload Image":
         st.success("Detection complete!")
     else:
         st.info("Please upload an image file.")
+
 
 elif option == "Webcam Detection":
     st.write("Click the 'Start Webcam' button to begin detection.")
@@ -49,20 +50,26 @@ elif option == "Webcam Detection":
 
     if st.session_state.webcam_started:
         stframe = st.empty()
+        
         vid = cv2.VideoCapture(0)
+        vid.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        vid.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        vid.set(cv2.CAP_PROP_FPS, 30)  
 
-        while vid.isOpened() and not st.session_state.stop:
-            ret, frame = vid.read()
-            if not ret:
-                st.write("Failed to capture video")
-                break
+        if not vid.isOpened():
+            st.write("Failed to open webcam.")
+        else:
+            while vid.isOpened() and not st.session_state.stop:
+                ret, frame = vid.read()
+                if not ret:
+                    st.write("Failed to capture video")
+                    break
 
-            result = model(frame)
+                result = model(frame)
+                res_plot = result[0].plot(show=False)
+                res_plot = cv2.cvtColor(res_plot, cv2.COLOR_BGR2RGB)
+                res_plot = Image.fromarray(res_plot)
+                stframe.image(res_plot, caption="Webcam Feed", use_column_width=True)
 
-            res_plot = result[0].plot(show=False)
-            res_plot = cv2.cvtColor(res_plot, cv2.COLOR_BGR2RGB)
-            res_plot = Image.fromarray(res_plot)
-            stframe.image(res_plot, caption="Webcam Feed", use_column_width=True)
-
-        vid.release()
-        st.write("Webcam stopped.")
+            vid.release() 
+            st.write("Webcam stopped.")
