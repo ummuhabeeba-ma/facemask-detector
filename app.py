@@ -10,7 +10,7 @@ st.set_page_config(page_title="Mask Detector", page_icon="😷")
 st.title("🦠 Real-Time Face Mask Detection")
 st.write("Welcome to the Mask Detection Application. Choose an option to detect masks:")
 
-option = st.selectbox("Select an option: ", ("Upload Image", "Capture from Webcam"))
+option = st.selectbox("How would you like to upload the image?: ", ("Upload Image", "Capture from Webcam"))
 
 if option == "Upload Image":
     image = st.file_uploader("Choose an image...", type=["jpg", "png", "jpeg"])
